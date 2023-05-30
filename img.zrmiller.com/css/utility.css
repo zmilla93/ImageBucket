@@ -1,0 +1,51 @@
+/* Generic classes that can be used to quickly style any element */
+
+.no-select {
+    user-select: none;
+}
+
+.center-wrapper {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.center-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.margin-top {
+    margin-top: 15px;
+}
+
+.margin-left {
+    margin-left: 10px;
+}
+
+.font-small {
+    font-size: var(--font-size-small);
+}
+
+.font-medium {
+    font-size: var(--font-size-medium);
+}
+
+.font-large {
+    font-size: var(--font-size-large);
+}
+
+.not-found {
+    font-size: var(--font-size-large);
+}
+
+.icon {
+    fill: var(--main-color);
+}
+
+.icon:hover {
+    fill: var(--main-color-light);
+}

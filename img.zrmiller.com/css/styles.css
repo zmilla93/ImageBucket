@@ -1,0 +1,198 @@
+/* Main styles used for all pages */
+
+:root {
+    /* --main-color: rgb(219, 145, 33); */
+    --main-color: rgb(146 85 204);
+    --main-color-light: rgb(186, 134, 235);
+    --main-background-color: rgb(240, 240, 240);
+    --red: rgb(221, 100, 100);
+    --red-dark: rgb(199, 53, 53);
+    --red-light: rgb(235, 141, 141);
+    --font-size-large: 24px;
+    --font-size-medium: 20px;
+    --font-size-small: 16px;
+    --brightness: 140%;
+}
+
+html,
+body {
+    color: var(--main-color);
+    background-color: var(--main-background-color);
+    height: 100%;
+    font-family: "Hind", sans-serif;
+    margin: 0px;
+    padding: 0px;
+    font-size: var(--font-size-small);
+}
+
+input {
+    box-sizing: border-box;
+}
+
+#page-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+a,
+a:visited,
+a:hover {
+    text-decoration: none;
+}
+
+/* Navbar */
+
+#navbar {
+    font-family: "Fredoka", sans-serif;
+    font-size: var(--font-size-large);
+    background: rgb(255, 255, 255);
+    border-style: solid;
+    border-color: var(--main-color);
+    border-width: 0px;
+    border-bottom-width: 2px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#navbar h1,
+#navbar h2,
+#navbar h3 {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+#navbar-left a,
+#navbar-left a:visited,
+#navbar-left a:active {
+    color: var(--main-color);
+}
+
+#navbar-left a:hover {
+    text-decoration: underline;
+}
+
+#navbar form {
+    margin: 0px;
+    padding: 0px;
+    display: inline;
+}
+
+#navbar-left {
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+#navbar-right {
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+/* Error Page */
+
+#error-404 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#error-404 h1 {
+    margin: 0;
+}
+
+/* Page Content */
+
+#content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.error-message {
+    color: var(--red);
+}
+
+.popup .error-message {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.link {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+
+.button {
+    cursor: pointer;
+    color: var(--main-color);
+    padding-left: 8px;
+    padding-right: 8px;
+    border: 1px solid var(--main-color);
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.button:hover {
+    color: var(--main-background-color);
+    background-color: var(--main-color);
+}
+
+.big-button {
+    cursor: pointer;
+    color: var(--main-color);
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-style: solid;
+    border-color: var(--main-color);
+    border-width: 2px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.big-button:hover,
+.big-button a:hover {
+    text-decoration: none;
+    color: var(--main-color-light);
+    border-color: var(--main-color-light);
+    /* filter: brightness(var(--brightness)); */
+}
+
+.navbar-button {
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.delete-button {
+    color: var(--red);
+    border-color: var(--red);
+}
+
+.delete-button:hover {
+    color: var(--main-background-color);
+    background-color: var(--red);
+}
+
+.big-button-invert {
+    color: rgb(255, 255, 255);
+    background-color: var(--main-color);
+}
+
+.big-button-invert:hover {
+    color: rgb(255, 255, 255);
+    background-color: var(--main-color-light);
+    border-color: var(--main-color-light);
+}
