@@ -6,12 +6,13 @@
 <?php include "common/image_resolver.php"; ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <!-- This webpage was generated dynamically using PHP and MySQL! -->
 
 <head>
     <!-- Metadata -->
     <title>ImageBucket</title>
+    <meta charset="UTF-8">
     <base href='https://img.zrmiller.com/'>
     <link rel="icon" type="image/x-icon" href="icons/favicon.png">
 
