@@ -9,8 +9,8 @@
         </p>
         <ul id="example-user-list">
             <li><a href="https://img.zrmiller.com/u/CatFan42">CatFan42</a></li>
-            <li><a href="https://img.zrmiller.com/u/TreemanGuy">TreemanGuy</a></li>
-            <li><a href="https://img.zrmiller.com/u/JimBaseball6">JimBaseball6</a></li>
+            <li><a href="https://img.zrmiller.com/u/SportsGuyDude">SportsGuyDude</a></li>
+            <li><a href="https://img.zrmiller.com/u/nature_is_neat">nature_is_neat</a></li>
         </ul>
     </div>
 </div>
