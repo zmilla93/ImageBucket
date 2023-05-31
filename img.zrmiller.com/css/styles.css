@@ -19,7 +19,7 @@ body {
     color: var(--main-color);
     background-color: var(--main-background-color);
     height: 100%;
-    font-family: "Hind", sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0px;
     padding: 0px;
     font-size: var(--font-size-small);
