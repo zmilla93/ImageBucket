@@ -22,7 +22,7 @@
             </div>
             <input type="hidden" name="signup-submit">
             <button id="signup-submit-button" type="submit" name="signup-submit-button">Sign Up</button>
-            <div class="center-text">Already have an account?&nbsp;<span class="link show-login">Log in</span>!</div>
+            <div class="center-text flex-wrap">Already have an account?&nbsp;<span class="link show-login">Log in!</span></div>
         </form>
     </div>
 </div>

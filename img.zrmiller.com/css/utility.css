@@ -49,3 +49,7 @@
 .icon:hover {
     fill: var(--main-color-light);
 }
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
