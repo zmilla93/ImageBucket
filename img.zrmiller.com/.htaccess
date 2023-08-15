@@ -24,6 +24,12 @@ RewriteRule ^/?u/(.+)$ /index.php?profile=$1 [L]
 RewriteCond %{REQUEST_URI} ^/i/.+$
 RewriteRule ^/?i/(.+)$ /index.php?image_raw=$1 [L]
 
+# Redirect all api requests /api/request_handler.php
+RewriteCond %{REQUEST_URI} ^/api/.+$
+RewriteCond %{REQUEST_URI} !^/api/request_handler.php.*$
+RewriteRule ^/?api/.*$ /api/request_handler.php [L]
+
 # Remove the need for .php
+# NOTE : This rule should always be last!
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^\.]+)$ $1.php [NC,L]
+RewriteRule ^([^\.]+)$ $1.php [NC]
