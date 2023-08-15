@@ -21,7 +21,7 @@
     list-style-type: none;
 }
 
-#homepage-blurb li:before {
+#homepage-blurb li::before {
     content: '\25B8';
     margin-left: -20px;
     margin-right: 10px;
