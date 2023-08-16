@@ -1,6 +1,6 @@
 <?php
-include_once "classes/QueryResult.php";
-// include_once "api/users.php";
+include "classes/QueryResult.php";
+include "classes/User.php";
 
 // User queries
 
@@ -26,20 +26,25 @@ function getUsernameID($username)
     return $id;
 }
 
-function getUserInfo($username){
+function fetchUserInfo($username)
+{
     global $conn;
     $sql = "SELECT username, timeJoined FROM users WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$username]);
-    return QueryResult::singleRow($stmt);
+    $stmt->setFetchMode(PDO::FETCH_CLASS, "User");
+    $user = $stmt->fetch();
+    return $user;
 }
 
-function getAllUsers(){
+function fetchAllUsers()
+{
     global $conn;
     $sql = "SELECT username, timeJoined FROM users ORDER BY username ASC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
-    return QueryResult::multipleRows($stmt);
+    $rows = $stmt->fetchAll(PDO::FETCH_CLASS, "User");
+    return $rows;
 }
 
 // Image Queries
@@ -53,10 +58,4 @@ function fetchImagesByUsername($username)
     $stmt = $conn->prepare($sql);
     $stmt->execute([$username]);
     return QueryResult::multipleRows($stmt);
-}
-
-
-class SimpleUser{
-    public $username;
-    public $time_joined;
 }

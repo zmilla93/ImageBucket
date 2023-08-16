@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Handles the following endpoints:
+ * Handles all /users/* endpoints:
  * /users - Returns a list of all users
- * /users/{username} - Returns username, url, and joindate
+ * /users/{username} - Returns username, url, and joinDate
  * /users/{username}/images - Returns all images uploaded by the user
  */
 
@@ -14,55 +14,23 @@ function handleUsersRequest($params)
 {
     $username = $params[0];
     $images = $params[1];
+    // No users endpoint require 3 parameters, so return an error
     if ($params[2] != null) {
         respondError();
     }
+    // Endpoint: users/{username}/images
     if ($images != null) {
         if (strcasecmp($images, "images") == 0) {
             respondError("Not Implemented");
         } else respondError();
     }
+    // Endpoint: users/{username}
     if ($username != null) {
-        $user = User::fetchFromUsername($username);
+        $user = fetchUserInfo($username);
+        if (!$user) respondInvalid("No one by the username '" . $username . "' was found.");
         respond($user);
     }
-    $allUsers = User::fetchAllUsers();
+    // Endpoint: users
+    $allUsers = fetchAllUsers();
     respond($allUsers);
-}
-
-class User
-{
-    public $username;
-    public $joinDate;
-    public $url;
-
-    function __construct($username, $joinDate)
-    {
-        $this->username = $username;
-        $this->url = "https://img.zrmiller.com/u/" . $username;
-        $this->joinDate = $joinDate;
-    }
-
-    static function fromRow($row)
-    {
-        return new User($row['username'], $row['timeJoined']);
-    }
-
-    static function fetchFromUsername($username)
-    {
-        $result = getUserInfo($username);
-        if ($result->success) return User::fromRow($result->data);
-        respondInvalid("No one by the username '" . $username . "' was found.");
-    }
-
-    static function fetchAllUsers()
-    {
-        $result = getAllUsers();
-        $users = [];
-        foreach ($result->data as $row) {
-            $user = User::fromRow($row);
-            array_push($users, $user);
-        }
-        return $users;
-    }
 }
