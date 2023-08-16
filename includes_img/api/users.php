@@ -45,7 +45,7 @@ class User
 
     static function fromRow($row)
     {
-        return new User($row['username'], $row['time_joined']);
+        return new User($row['username'], $row['timeJoined']);
     }
 
     static function fetchFromUsername($username)

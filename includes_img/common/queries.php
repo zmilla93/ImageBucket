@@ -28,7 +28,7 @@ function getUsernameID($username)
 
 function getUserInfo($username){
     global $conn;
-    $sql = "SELECT username, time_joined FROM users WHERE username = ?";
+    $sql = "SELECT username, timeJoined FROM users WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$username]);
     return QueryResult::singleRow($stmt);
@@ -36,7 +36,7 @@ function getUserInfo($username){
 
 function getAllUsers(){
     global $conn;
-    $sql = "SELECT username, time_joined FROM users ORDER BY username ASC";
+    $sql = "SELECT username, timeJoined FROM users ORDER BY username ASC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     return QueryResult::multipleRows($stmt);

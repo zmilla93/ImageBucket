@@ -8,7 +8,7 @@ SELECT * from users;
 SELECT * from images;
 
 -- Get all images by a user
-select uuid, mime, extension, time_uploaded from images
+select uuid, mime, extension, timeUploaded from images
 INNER JOIN users on users.id = images.author
 where users.username = 'asdf';
 

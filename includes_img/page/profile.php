@@ -20,7 +20,7 @@ if ($userExists) $result = fetchImagesByUsername($username);
 if ($userExists) {
 ?>
     <script>
-        setNavbarUsername("<?php echo $row['username'] ?>");
+        setNavbarUsername("<?php echo $username ?>");
     </script>
     <?php
     if ($result->rowCount == 0) { ?>

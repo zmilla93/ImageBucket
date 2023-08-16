@@ -3,7 +3,7 @@
 // IE https://img.zrmiller.com/i/ZLavQnTK
 
 // Get image data from database
-$sql = "SELECT username, users.id, uuid, extension, time_uploaded FROM images
+$sql = "SELECT username, users.id, uuid, extension, timeUploaded FROM images
 INNER JOIN `users` ON `users`.`id` = `images`.`author`
 WHERE `images`.`uuid` = ? COLLATE `utf8mb4_bin`";
 $isThumbnailRequest = false;
@@ -32,8 +32,8 @@ if ($stmt->rowCount() == 0) { ?>
 }
 
 // Format date
-$uploadTime  = new DateTimeImmutable($row['time_uploaded']);
-$dateFormatted = DateTime::createFromFormat("Y-m-d H:i:s", $row['time_uploaded']);
+$uploadTime  = new DateTimeImmutable($row['timeUploaded']);
+$dateFormatted = DateTime::createFromFormat("Y-m-d H:i:s", $row['timeUploaded']);
 $dateFormatted = $dateFormatted->format('n/j/y');
 
 // Check if the current user is the image owner

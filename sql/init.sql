@@ -13,9 +13,9 @@ CREATE TABLE users(
 	username varchar(30) unique, 
     password varchar(255), 
 	email varchar(255), 
-	time_joined timestamp default now(), 
+	timeJoined timestamp default now(), 
 	active boolean default true, 
-	user_rank int default 0, 
+	userRank int default 0, 
 	notes text
 );
 
@@ -27,6 +27,6 @@ CREATE TABLE images(
 	author int,
     thumbnail bit not null default 0,
     animated bit not null default 0,
-    time_uploaded timestamp default now(), 
+    timeUploaded timestamp default now(), 
     foreign key (author) references users(id)
 );
