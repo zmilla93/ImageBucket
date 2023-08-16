@@ -20,7 +20,8 @@ class Image
     }
 }
 
-class ImageSimple{
+class ImageSimple
+{
     public $author;
     public $uuid;
     public $extension;
@@ -30,5 +31,4 @@ class ImageSimple{
     {
         $this->url = "https://img.zrmiller.com/i/" . $this->uuid . "." . $this->extension;
     }
-
 }

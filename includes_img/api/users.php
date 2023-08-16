@@ -18,13 +18,15 @@ function handleUsersRequest($params)
     // Endpoint: users/{username}/images
     if ($images != null) {
         if (strcasecmp($images, "images") == 0) {
-            respondError("Not Implemented");
+            $result = fetchUserImages($username);
+            if (!$result) respondInvalidUser($username);
+            respond($result);
         } else respondError();
     }
     // Endpoint: users/{username}
     if ($username != null) {
         $user = fetchUserInfo($username);
-        if (!$user) respondInvalid("No one by the username '" . $username . "' was found.");
+        if (!$user) respondInvalidUser($username);
         respond($user);
     }
     // Endpoint: users

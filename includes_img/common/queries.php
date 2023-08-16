@@ -79,11 +79,25 @@ function fetchImagesByUsername($username)
     return QueryResult::multipleRows($stmt);
 }
 
+function fetchUserImages($username)
+{
+    if(!doesUserExist($username)) return false;
+    global $conn;
+    $sql = "SELECT username as author, uuid, extension, timeUploaded, thumbnail, animated FROM images
+    INNER JOIN `users` ON `users`.`id` = `images`.`author`
+    WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->setFetchMode(PDO::FETCH_CLASS, "Image");
+    $stmt->execute([$username]);
+    $rows = $stmt->fetchAll();
+    return $rows;
+}
+
 function fetchAllImages()
 {
     global $conn;
     $sql = "SELECT username as author, uuid, extension FROM images
-    INNER JOIN `users` ON `users`.`id` = `images`.`author`;";
+    INNER JOIN `users` ON `users`.`id` = `images`.`author`";
     $stmt = $conn->prepare($sql);
     $stmt->setFetchMode(PDO::FETCH_CLASS, "ImageSimple");
     $stmt->execute();

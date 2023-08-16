@@ -18,6 +18,10 @@ function respondInvalid($error = "No data found matching parameters.")
     respond(new ErrorResponse($error));
 }
 
+function respondInvalidUser($username){
+    respond(new ErrorResponse("No one by the username '" . $username . "' was found."));
+}
+
 function respondError($error = "Invalid API endpoint.")
 {
     respond(new ErrorResponse($error), RESPONSE_CODE_NOT_FOUND);
