@@ -1,9 +1,12 @@
-<?php set_include_path("/home/zmilla/includes_img"); ?>
-<?php include "common/db_connection.php"; ?>
-<?php include "common/scripts.php"; ?>
-<?php include "common/user.php"; ?>
-<?php include "common/upload.php"; ?>
-<?php include "common/image_resolver.php"; ?>
+<?php
+set_include_path("/home/zmilla/includes_img");
+include "common/db_connection.php";
+include "common/scripts.php";
+include "common/queries.php";
+include "common/user.php";
+include "common/upload.php";
+include "common/image_resolver.php";
+?>
 
 <!DOCTYPE html>
 <html lang="en">

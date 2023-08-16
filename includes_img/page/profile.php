@@ -4,25 +4,18 @@
 // IE https://img.zrmiller.com/u/asdf
 
 // Check if the user exists
-$sql = "SELECT username FROM users WHERE username = ?";
-$stmt = $conn->prepare($sql);
-$stmt->execute([$_GET['profile']]);
-$row = $stmt->fetch();
+// $sql = "SELECT username FROM users WHERE username = ?";
+// $stmt = $conn->prepare($sql);
+// $stmt->execute([$_GET['profile']]);
+// $row = $stmt->fetch();
 
-$userExists = isset($row['username']);
-$username = null;
-$rows = null;
-$stmt = null;
-if ($userExists) {
-    $username = $row['username'];
-    // Fetch all images uploaded by the target user
-    $sql = "SELECT uuid, extension, animated FROM images
-    INNER JOIN `users` ON `users`.`id` = `images`.`author`
-    WHERE `users`.`username` = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([$_GET['profile']]);
-    $rows = $stmt->fetchAll();
-}
+$username = $_GET['profile'];
+
+// $userExists = isset($row['username']);
+$userExists = doesUserExist($username);
+$result = null;
+if ($userExists) $result = fetchImagesByUsername($username);
+
 
 if ($userExists) {
 ?>
@@ -30,7 +23,7 @@ if ($userExists) {
         setNavbarUsername("<?php echo $row['username'] ?>");
     </script>
     <?php
-    if ($stmt->rowCount() == 0) { ?>
+    if ($result->rowCount == 0) { ?>
         <div class="center-wrapper not-found">
             <?php
             if ($username == $_SESSION['username']) { ?>
@@ -44,7 +37,7 @@ if ($userExists) {
     } else {
         echo '<div id="gallery-wrapper">';
         // Generate HTML for all images for the given profile
-        foreach ($rows as  $row) { ?>
+        foreach ($result->data as $row) { ?>
             <div class="gallery-image-wrapper">
                 <a href="/i/<?php echo $row['uuid'] ?>" class="image-in-gallery center-text">
                     <img src="https://img.zrmiller.com/i/<?php echo $row['uuid'] . $thumbnailMarker . "." . $row['extension'] ?>" class="gallery-image center-text image-link" loading="lazy">

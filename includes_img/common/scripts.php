@@ -20,19 +20,6 @@ function refresh()
     exit();
 }
 
-// Get user id from a given username
-function getUsernameID($username)
-{
-    global $conn;
-    $sql = 'SELECT id FROM users WHERE username = ?';
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([$username]);
-    $row = $stmt->fetch();
-    if (empty($row['id'])) return -1;
-    $id = $row['id'];
-    return $id;
-}
-
 // Generates a random string of upper and lower case letters
 function getCustomUUID($length)
 {
