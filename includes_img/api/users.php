@@ -7,7 +7,8 @@
  * /users/{username}/images - Returns all images uploaded by the user
  */
 
-include_once "api/response.php";
+include "api/response.php";
+include "common/queries.php";
 
 function handleUsersRequest($params)
 {
@@ -49,26 +50,16 @@ class User
 
     static function fetchFromUsername($username)
     {
-        global $conn;
-        $sql = "SELECT username, time_joined FROM users WHERE username = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute([$username]);
-        if ($stmt->rowCount() < 1) {
-            respondInvalid("No one by the username '" . $username . "' was found.");
-        }
-        $row = $stmt->fetch();
-        return User::fromRow($row);
+        $result = getUserInfo($username);
+        if ($result->success) return User::fromRow($result->data);
+        respondInvalid("No one by the username '" . $username . "' was found.");
     }
 
     static function fetchAllUsers()
     {
-        global $conn;
-        $sql = "SELECT username, time_joined FROM users ORDER BY username ASC";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $rows = $stmt->fetchAll();
+        $result = getAllUsers();
         $users = [];
-        foreach ($rows as $row) {
+        foreach ($result->data as $row) {
             $user = User::fromRow($row);
             array_push($users, $user);
         }
