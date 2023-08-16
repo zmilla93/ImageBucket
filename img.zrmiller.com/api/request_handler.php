@@ -13,6 +13,11 @@ include_once "api/response.php";
 $params = explode("/", $_SERVER['REQUEST_URI']);
 if (count($params) < 3 || strcasecmp($params[1], "api") != 0)
     die("Something went wrong while connecting to the API.");
+if (empty($params[2])) {
+    // FIXME : Redirect to documentation once that is made?
+    // header("Location: https://$_SERVER[HTTP_HOST]", true, 302);
+    // exit();
+}
 $MIN_PARAM_COUNT = 3;
 $baseRequest = $params[2];
 $params = array_splice($params, 3);

@@ -22,7 +22,8 @@ function handleUsersRequest($params)
         } else respondError();
     }
     if ($username != null) {
-        respondError("Not Implemented");
+        $user = User::fetchFromUsername($username);
+        respond($user);
     }
     $allUsers = User::fetchAllUsers();
     respond($allUsers);
@@ -46,10 +47,23 @@ class User
         return new User($row['username'], $row['time_joined']);
     }
 
+    static function fetchFromUsername($username)
+    {
+        global $conn;
+        $sql = "SELECT username, time_joined FROM users WHERE username = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$username]);
+        if ($stmt->rowCount() < 1) {
+            respondInvalid("No one by the username '" . $username . "' was found.");
+        }
+        $row = $stmt->fetch();
+        return User::fromRow($row);
+    }
+
     static function fetchAllUsers()
     {
         global $conn;
-        $sql = "SELECT username, time_joined FROM users";
+        $sql = "SELECT username, time_joined FROM users ORDER BY username ASC";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $rows = $stmt->fetchAll();
