@@ -7,9 +7,6 @@
  * /users/{username}/images - Returns all images uploaded by the user
  */
 
-include "api/response.php";
-include "common/queries.php";
-
 function handleUsersRequest($params)
 {
     $username = $params[0];

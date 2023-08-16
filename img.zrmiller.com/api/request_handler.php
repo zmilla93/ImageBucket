@@ -5,9 +5,11 @@
  */
 
 set_include_path("/home/zmilla/includes_img");
-include_once "common/db_connection.php";
-include_once "api/users.php";
-include_once "api/response.php";
+include "common/db_connection.php";
+include "common/queries.php";
+include "api/response.php";
+include "api/users.php";
+include "api/images.php";
 
 // Parse the URI, splitting it into a string of arrays.
 $params = explode("/", $_SERVER['REQUEST_URI']);
@@ -27,6 +29,9 @@ while (count($params) < $MIN_PARAM_COUNT) array_push($params, null);
 switch (strtolower($baseRequest)) {
     case "users":
         handleUsersRequest($params);
+        break;
+    case "images":
+        handleImageRequest($params);
         break;
     default:
         respondError();
