@@ -1,5 +1,6 @@
 <?php
 set_include_path("/home/zmilla/includes_img");
+include "common/session.php";
 include "common/db_connection.php";
 include "common/scripts.php";
 include "common/queries.php";
