@@ -1,12 +1,15 @@
 <?php
 set_include_path("/home/zmilla/includes_img");
-include "common/session.php";
-include "common/db_connection.php";
-include "common/scripts.php";
-include "common/queries.php";
-include "common/user.php";
-include "common/upload.php";
-include "common/image_resolver.php";
+require "common/session.php";
+require "common/db_connection.php";
+require "common/scripts.php";
+require "common/queries.php";
+require "common/user.php";
+require "common/upload.php";
+require "common/image_resolver.php";
+
+$page = "homepage";
+if (isset($_GET['page'])) $page = $_GET['page'];
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +29,14 @@ include "common/image_resolver.php";
     <link rel="stylesheet" href="css/popups.css" />
     <link rel="stylesheet" href="css/utility.css" />
     <link rel="stylesheet" href="css/images.css" />
+    <?php
+    // Page specific CSS
+    switch ($page) {
+        case 'api':
+            echo '<link rel="stylesheet" href="css/api.css" />';
+            break;
+    }
+    ?>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +53,7 @@ include "common/image_resolver.php";
 <body>
 
     <!-- Popups -->
-    <?php include "popups/popup_master.php"; ?>
+    <?php require "popups/popup_master.php"; ?>
 
     <div id="page-wrapper">
 
@@ -52,20 +63,17 @@ include "common/image_resolver.php";
                 <h3><a href="/" class="navlink title no-select">ImageBucket</a></h3>
                 <h3 id="navbar-username" class="navlink"></h3>
             </span>
-            <?php include "navbar/navbar_user.php"; ?>
+            <?php require "navbar/navbar_user.php"; ?>
         </div>
 
         <!-- Page Content -->
         <div id="content">
-            <?php if (isset($_GET['profile'])) {
-                include "page/profile.php";
-            } else if (isset($_GET['image_raw'])) {
-                include "page/image.php";
-            } else if (isset($_GET['error'])) {
-                include "page/404.php";
-            } else {
-                include "page/homepage.php";
-            }
+            <?php
+            $pageFile = "page/" . $page . ".php";
+            $pageFileFull = stream_resolve_include_path($pageFile);
+            $fallbackPage = "page/homepage.php";
+            if (file_exists($pageFileFull)) include $pageFile;
+            else include $fallbackPage;
             ?>
         </div>
 

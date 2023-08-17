@@ -3,27 +3,20 @@
 // This page is shown when you view a user's profile page.
 // IE https://img.zrmiller.com/u/asdf
 
-// Check if the user exists
-// $sql = "SELECT username FROM users WHERE username = ?";
-// $stmt = $conn->prepare($sql);
-// $stmt->execute([$_GET['profile']]);
-// $row = $stmt->fetch();
-
-$username = $_GET['profile'];
-
-// $userExists = isset($row['username']);
+$username = filter_input(INPUT_GET, "profile");
 $userExists = doesUserExist($username);
 $result = null;
-if ($userExists) $result = fetchImagesByUsername($username);
-
 
 if ($userExists) {
+    $result = fetchImagesByUsername($username);
 ?>
     <script>
         setNavbarUsername("<?php echo $username ?>");
     </script>
     <?php
-    if ($result->rowCount == 0) { ?>
+    if ($result->rowCount == 0) { 
+        // Display a message if the user exists, but has no images uploaded
+        ?>
         <div class="center-wrapper not-found">
             <?php
             if ($username == $_SESSION['username']) { ?>
@@ -51,7 +44,9 @@ if ($userExists) {
         }
         echo '</div>';
     }
-} else { ?>
+} else { 
+    // Display a message if the user doesn't exist
+    ?>
     <div class="center-wrapper not-found">
         No one by this username was found.
     </div>

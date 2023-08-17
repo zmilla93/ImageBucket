@@ -2,17 +2,21 @@
 // This page is shown when a single image is viewed
 // IE https://img.zrmiller.com/i/ZLavQnTK
 
+// Filter & format the requested image uuid
+$uuid = filter_input(INPUT_GET, "image_uuid");
+if ($uuid == null || !$uuid) $uuid = "";
+$isThumbnailRequest = false;
+if (isThumbnailRequest($uuid)) {
+    $uuid = cleanThumbnailRequest($uuid);
+    $isThumbnailRequest = true;
+}
+
 // Get image data from database
 $sql = "SELECT username, users.id, uuid, extension, timeUploaded FROM images
 INNER JOIN `users` ON `users`.`id` = `images`.`author`
 WHERE `images`.`uuid` = ? COLLATE `utf8mb4_bin`";
-$isThumbnailRequest = false;
-if (isThumbnailRequest($_GET['image_raw'])) {
-    $_GET['image_raw'] = cleanThumbnailRequest($_GET['image_raw']);
-    $isThumbnailRequest = true;
-}
 $stmt = $conn->prepare($sql);
-$stmt->execute([$_GET['image_raw']]);
+$stmt->execute([$uuid]);
 $row = $stmt->fetch();
 
 // If no image was found, print not found message and return early
@@ -39,7 +43,6 @@ $dateFormatted = $dateFormatted->format('n/j/y');
 // Check if the current user is the image owner
 $isImageOwner = $row['username'] == $_SESSION['username'] && $row['id'] == $_SESSION['user-id'];
 $lastImageUUID = $row['uuid'];
-
 ?>
 
 <!-- Image Info & Buttons -->

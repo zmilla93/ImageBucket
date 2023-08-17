@@ -46,8 +46,8 @@ function cleanThumbnailRequest($request)
 }
 
 // Fetch image row from database, then display the image
-if ((isset($_GET['image_raw']))) {
-    $uuid = $_GET['image_raw'];
+if ((isset($_GET['image_uuid']))) {
+    $uuid = $_GET['image_uuid'];
     $thumbnail = isThumbnailRequest($uuid);
     if ($thumbnail) $uuid = cleanThumbnailRequest($uuid);
     $imagePattern = "/([A-Za-z]+)\.[A-Za-z]+/";
@@ -56,6 +56,7 @@ if ((isset($_GET['image_raw']))) {
         $sql = "SELECT username, uuid, mime, extension, thumbnail FROM images
         INNER JOIN `users` ON `users`.`id` = `images`.`author`
         WHERE `images`.`uuid` = ? COLLATE `utf8mb4_bin`";
+        // FIXME : Validate extension
         $stmt = $conn->prepare($sql);
         $stmt->execute([$groups[1]]);
         $row = $stmt->fetch();

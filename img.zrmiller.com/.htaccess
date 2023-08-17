@@ -2,7 +2,7 @@
 RewriteEngine On
 
 #Custom 404 Page
-ErrorDocument 404 /index.php?error=404
+ErrorDocument 404 /index.php?page=404
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
@@ -18,11 +18,15 @@ RewriteRule ^.*$ - [L,R=404]
 
 # /u/name rewrite
 RewriteCond %{REQUEST_URI} ^/u/.+$
-RewriteRule ^/?u/(.+)$ /index.php?profile=$1 [L]
+RewriteRule ^/?u/(.+)$ /index.php?page=profile&profile=$1 [L]
 
 # /i/name.ext rewrite
 RewriteCond %{REQUEST_URI} ^/i/.+$
-RewriteRule ^/?i/(.+)$ /index.php?image_raw=$1 [L]
+RewriteRule ^/?i/(.+)$ /index.php?page=image&image_uuid=$1 [L]
+
+# /api documentation rewrite
+RewriteCond %{REQUEST_URI} ^/api/?$
+RewriteRule ^/?api/.*$ /index.php?page=api [L]
 
 # Redirect all api requests /api/request_handler.php
 RewriteCond %{REQUEST_URI} ^/api/.+$
