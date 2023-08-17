@@ -60,7 +60,7 @@ function fetchImageData($uuid)
     global $conn;
     $sql = "SELECT username as author, uuid, extension, timeUploaded, thumbnail, animated FROM images
     INNER JOIN `users` ON `users`.`id` = `images`.`author`
-    WHERE uuid = ?";
+    WHERE uuid = ? COLLATE `utf8mb4_bin`";
     $stmt = $conn->prepare($sql);
     $stmt->setFetchMode(PDO::FETCH_CLASS, "Image");
     $stmt->execute([$uuid]);
