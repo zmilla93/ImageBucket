@@ -42,12 +42,12 @@ function handleImageUpload()
     if ($error) refresh();
     // Fetch nessecary metadata
     $pathInfo = pathinfo($file['name']);
-    $extension = $pathInfo['extension'];
+    $extension = strtolower($pathInfo['extension']);
     if ($extension == 'jpeg') $extension = 'jpg';
     $imageSize = getimagesize($file['tmp_name']);
     $destination = $userFolder . "/" . $uuid . "." . $extension;
     $thumbnailDestination = $userFolder . "/" . $uuid . $thumbnailMarker . "." . $extension;
-    $mime = mime_content_type($file['tmp_name']);
+    $mime = strtolower(mime_content_type($file['tmp_name']));
     $animated = $mime == "image/gif" && isGifAnimated($file['tmp_name']);
     // Move the file to the server
     $success = move_uploaded_file($file['tmp_name'], $destination);
