@@ -6,6 +6,9 @@ $thumbnailMarker = "_thumbnail";
 // Error messages
 $sessionErrorMessage = "Failed to validate session, please try again.";
 
+$lineBreak = "
+";
+
 // Reloads the current page in a way that prevents form resubmission
 function refresh()
 {
@@ -73,4 +76,11 @@ function validateToken($token)
         return true;
     }
     return false;
+}
+
+
+function br($count = 1)
+{
+    global $lineBreak;
+    for ($i = 0; $i < $count; $i++) echo $lineBreak;
 }

@@ -1,0 +1,21 @@
+{
+    "responseType": "GET",
+    "endpoint": "/users/{username}/images",
+    "description": "Returns an array of image data for the given user.",
+    "parameters": {
+        "username": [
+            "String",
+            "The username of the target user."
+        ]
+    },
+    "response": {
+        "author": [
+            "String",
+            "The username of the user who uploaded the image."
+        ],
+        "uuid": [
+            "String",
+            "The uuid of the image."
+        ]
+    }
+}

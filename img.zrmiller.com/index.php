@@ -34,6 +34,7 @@ if (isset($_GET['page'])) $page = $_GET['page'];
     switch ($page) {
         case 'api':
             echo '<link rel="stylesheet" href="css/api.css" />';
+            br();
             break;
     }
     ?>
