@@ -28,11 +28,20 @@
         include "classes/Doc.php";
         include "api/docs/test.php";
 
-        $testDoc->output();
-        br(2);
-        $testDoc->output();
-        br(2);
-        $testDoc->output();
+        // $testDoc->output();
+        // br(2);
+        // $testDoc->output();
+        // br(2);
+        // $testDoc->output();
+
+        $test = Doc::fromJsonFile("test");
+        
+        echo "dump<br>";
+        var_dump($test);
+        echo "<br><br>";
+
+        $test->output();
+
 
         ?>
 

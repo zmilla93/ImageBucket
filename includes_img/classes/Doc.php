@@ -100,6 +100,23 @@ class Doc
         $this->buildHTML();
         $this->domElement->output();
     }
+
+    static function fromJsonFile($fileName)
+    {
+        $text = file_get_contents(stream_resolve_include_path("api/docs/" . $fileName . ".json"));
+        $json = json_decode($text, true);
+        $doc = new Doc();
+        foreach ($json as $key => $value) {
+            if (is_array($value)) {
+                foreach ($value as $paramName => $paramArray) {
+                    $paramObj = new Parameter($paramName, $paramArray[0], $paramArray[1]);
+                    array_push($doc->$key, $paramObj);
+                }
+            } else $doc->$key = $value;
+            $doc->example = file_get_contents(stream_resolve_include_path("api/docs/" . $fileName . "_example.json"));
+        }
+        return $doc;
+    }
 }
 
 class Parameter
