@@ -23,7 +23,11 @@ RewriteRule ^/?u/(.+)$ /index.php?profile=$1 [L]
 to reinterpret the url as `img.zrmiller.com/index.php?profile=testuser`. This GET statement then triggers an include in index.php to add the contents of `includes_img/page/profile.php`, which handles displaying the images uploaded by the target user.
 
 Image Uploading & Display
-===============
+=========================
 When images are uploaded, they have a thumbnail created automatially if the file type is supported (png, jpg, gif, webp). Uploaded files are stored outside of the root directory of the website, so they cannot be viewed directly.
 
 To serve an image, metadata is fetched from the database, added to the reponse header, then the image file is output using php. This allows for features such as privacy settings (not implemented) or fallback images. For example, if you request a thumbnail of an image with no thumbnail, the full sized image will be served instead. If you request a nonexistant image, a generic image is served instead.
+
+API
+===
+The website offers a simple REST API for reading data from the website. [Documentation](https://img.zrmiller.com/api/).
