@@ -1,0 +1,45 @@
+{
+    "responseType": "GET",
+    "endpoint": "/users/{username}/images",
+    "description": "Returns an array of all images uploaded by the target user.",
+    "parameters": {
+        "username": [
+            "String",
+            "The username of the target user."
+        ]
+    },
+    "response": {
+        "author": [
+            "String",
+            "The username of the person who uploaded the image."
+        ],
+        "uuid": [
+            "String",
+            "The unique ID of the image."
+        ],
+        "extension": [
+            "String",
+            "The file type extension for the image."
+        ],
+        "thumbnail": [
+            "Boolean",
+            "Returns true if this image has had a thumbnail version created."
+        ],
+        "animated": [
+            "Boolean",
+            "Returns true if this image is a gif with more than one frame."
+        ],
+        "timeUploaded": [
+            "String",
+            "The datetime when the image was uploaded. Format is 'Year-Month-Day Hour:Minute:Second'"
+        ],
+        "url": [
+            "String",
+            "A direct to the target image."
+        ],
+        "thumbnailURL": [
+            "String",
+            "A direct to the target image's thumbnail. If the image has no thumbnail, the full sized image will be served instead."
+        ]
+    }
+}

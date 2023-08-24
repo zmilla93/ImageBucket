@@ -24,24 +24,12 @@
         // NOTE : If reading files seems slow, look into curl_multi_exec
         // https://www.php.net/manual/en/function.curl-multi-exec.php
 
+        // Dependencies
         include "classes/Node.php";
         include "classes/Doc.php";
-        include "api/docs/test.php";
 
-        // $testDoc->output();
-        // br(2);
-        // $testDoc->output();
-        // br(2);
-        // $testDoc->output();
-
-        $test = Doc::fromJsonFile("test");
-        
-        echo "dump<br>";
-        var_dump($test);
-        echo "<br><br>";
-
-        $test->output();
-
+        // Output all documentation
+        include "api/documentation.php";
 
         ?>
 

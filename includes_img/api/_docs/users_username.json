@@ -1,0 +1,25 @@
+{
+    "responseType": "GET",
+    "endpoint": "/users/{username}",
+    "description": "Returns data about a single user.",
+    "parameters": {
+        "username": [
+            "String",
+            "The username of the target user."
+        ]
+    },
+    "response": {
+        "username": [
+            "String",
+            "The user's ImageBucket username."
+        ],
+        "timeJoined": [
+            "String",
+            "The datetime of when the user signed up. Format is 'Year-Month-Day Hour:Minute:Second'."
+        ],
+        "url": [
+            "String",
+            "The URL for the user's profile, which will display all images uploaded by the user."
+        ]
+    }
+}

@@ -103,7 +103,7 @@ class Doc
 
     static function fromJsonFile($fileName)
     {
-        $text = file_get_contents(stream_resolve_include_path("api/docs/" . $fileName . ".json"));
+        $text = file_get_contents(stream_resolve_include_path("api/_docs/" . $fileName . ".json"));
         $json = json_decode($text, true);
         $doc = new Doc();
         foreach ($json as $key => $value) {
@@ -113,7 +113,7 @@ class Doc
                     array_push($doc->$key, $paramObj);
                 }
             } else $doc->$key = $value;
-            $doc->example = file_get_contents(stream_resolve_include_path("api/docs/" . $fileName . "_example.json"));
+            $doc->example = file_get_contents(stream_resolve_include_path("api/_examples/" . $fileName . ".json"));
         }
         return $doc;
     }

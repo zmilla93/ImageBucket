@@ -1,0 +1,23 @@
+{
+    "responseType": "GET",
+    "endpoint": "/images",
+    "description": "Returns an array of all uploaded images.",
+    "response": {
+        "author": [
+            "String",
+            "The username of the person who uploaded the image."
+        ],
+        "uuid": [
+            "String",
+            "The unique identifier of the image."
+        ],
+        "extension": [
+            "String",
+            "The file type extension for the image."
+        ],
+        "url": [
+            "String",
+            "A direct link to the target image."
+        ]
+    }
+}
