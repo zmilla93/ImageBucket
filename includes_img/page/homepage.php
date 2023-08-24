@@ -2,7 +2,8 @@
     <div id="homepage-blurb">
         <p>
             ImageBucket is a proof of concept image hosting website.<br>
-            You can create an account, upload images, then share links with others.
+            You can create an account, upload images, then share links with others.<br>
+            Allows reading data via a <a href="/api">REST API</a>.
         </p>
         <p>
             Don't feel like making an account? Check out these example profiles:
