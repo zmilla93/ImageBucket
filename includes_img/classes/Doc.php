@@ -26,6 +26,9 @@ class Doc
     {
         // Root Node
         $rootNode = new Div(["entryWrapper"]);
+        $id =  str_replace("/", "_", $this->endpoint);
+        $id = str_replace(["{", "}"], "", $id);
+        $rootNode->id = $id;
         $this->domElement = $rootNode;
         $left = new Div(["entryColumn", "entryColumnLeft"]);
         $right = new Div(["entryColumn", "entryColumnRight"]);

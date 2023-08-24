@@ -47,6 +47,15 @@ if (isset($_GET['page'])) $page = $_GET['page'];
     <!-- Scripts -->
     <script src="https://img.zrmiller.com/js/scripts.js"></script>
     <script src="https://img.zrmiller.com/js/validation.js"></script>
+    <?php
+    // Page specific JS
+    switch ($page) {
+        case 'api':
+            echo '<script src="js/api.js"></script>';
+            br();
+            break;
+    }
+    ?>
     <?php if ($_SESSION['logged']) { ?><script src="https://img.zrmiller.com/js/image_upload.js"></script><?php } ?>
 
 </head>

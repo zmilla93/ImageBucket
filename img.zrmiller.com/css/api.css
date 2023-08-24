@@ -62,6 +62,21 @@ pre {
     height: 100%;
 }
 
+#sidebar h4 {
+    margin: 0;
+    margin-top: 5px;
+    text-decoration: underline;
+}
+
+#sidebar a,
+#sidebar a:visited {
+    color: var(--main-color);
+}
+
+#sidebar a:last-child {
+    margin-top: 10px;
+}
+
 /* Entry Outer */
 
 .entryWrapper {
