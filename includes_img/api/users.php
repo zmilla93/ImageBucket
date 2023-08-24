@@ -19,7 +19,7 @@ function handleUsersRequest($params)
     if ($images != null) {
         if (strcasecmp($images, "images") == 0) {
             $result = fetchUserImages($username);
-            if (!$result) respondInvalidUser($username);
+            if ($result === false) respondInvalidUser($username);
             respond($result);
         } else respondError();
     }
